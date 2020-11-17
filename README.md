@@ -252,7 +252,7 @@ public class CheckLoginInterceptor implements HandlerInterceptor{
  
  그렇다면 서버가 실행될 때 @resource 이니까 LoginUserBean 에 주입을 시도하는데 @SessionScope 가 떡하니 설정되어있다.  
  
- @resource 는 지금 주입해야 하는데 @SessionScope 는 브라우저 요청이 들어와야하니까 서로 충돌이 발생해서 오류가 나지 않았을까 예상해본다.
+ @resource 는 지금 주입해야 하는데 @SessionScope 는 요청이 들어와야하니까 서로 충돌이 발생해서 오류가 나지 않았을까 예상해본다.
   
  이러한 오류는 xml 방식에서만 생기는 오류라고 한다.    
 
