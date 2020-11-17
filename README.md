@@ -242,17 +242,21 @@ public class CheckLoginInterceptor implements HandlerInterceptor{
    
  만약 @Lazy 가 없으면 오류가 생긴다.. 왜??  
  
- LoginUserBean 은 @SessionScope 를 통해서 객체를 주입 받게 설정되었다.
+ ```xml
+ <bean class="kr.co.blog.beans.UserBean" id="loginUserBean" scope="session"/> 	
+```
+ 
+ LoginUserBean 은 SessionScope 를 통해서 객체를 주입 받게 설정되었다.
  
   @Autowired 나 @resource 같은 어노테이션들은 서버가 실행될 때 자동으로 객체를 주입하려고 시도한다.
    
  이때 서로의 주입 시점을 생각해보자.  
  
- @Autowired & @resource 는 서버가 실행될 때, @SessionScope 는 브라우저에서 최초 요청이 들어올 때 주입 받는다.
+ @Autowired & @resource 는 서버가 실행될 때, SessionScope 는 브라우저에서 최초 요청이 들어올 때 주입 받는다.
  
- 그렇다면 서버가 실행될 때 @resource 이니까 LoginUserBean 에 주입을 시도하는데 @SessionScope 가 떡하니 설정되어있다.  
+ 그렇다면 서버가 실행될 때 @resource 이니까 LoginUserBean 에 주입을 시도하는데 SessionScope 가 떡하니 설정되어있다.  
  
- @resource 는 지금 주입해야 하는데 @SessionScope 는 요청이 들어와야하니까 서로 충돌이 발생해서 오류가 나지 않았을까 예상해본다.
+ @resource 는 지금 주입해야 하는데 SessionScope 는 요청이 들어와야하니까 서로 충돌이 발생해서 오류가 나지 않았을까 예상해본다.
   
  이러한 오류는 xml 방식에서만 생기는 오류라고 한다.    
 
